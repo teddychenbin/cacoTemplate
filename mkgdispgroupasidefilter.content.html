@@ -1,0 +1,171 @@
+<div id"asidewrap" class="aside" tabindex="-1" role="dialog">
+  <div class="aside-dialog">
+    <div class="aside-content">
+      <div id="asideheader" class="aside-header" ng-show="title">
+        <button id="asideclose" type="button" class="close" ng-click="$hide()">&times;</button>
+        <h4 class="aside-title" ng-bind="title"></h4>
+      </div>
+      
+      <div id="asidebar" >
+        
+        
+        				<div class="panel-body" >  
+					
+									 <div style="width: 50%;float: left;">
+										<button type="button" class="btn btn-default " 
+											style="width: 100%;"  ><i class="fa fa-undo"></i>&emsp;重&emsp;置</button>
+									 </div> 
+									 <div style="width: 50%;float: left;">
+										 <button type="button" class="btn btn-default  "
+										 	 style="width: 100%;"  ><i class="fa fa-check"></i>&emsp;確&emsp;定</button>
+								
+									 </div>
+							   
+							</div>
+				
+      </div>
+      
+      <div  id="asidebody" class="aside-body">
+  
+  								<div class="panel-heading">
+											<a data-toggle="collapse" data-parent="#asidestyle" href="#asidestylecontent">
+												款式選擇
+											</a>
+										</div>
+										<div id="asidestylecontent" class="panel-collapse collapse in">
+											<div class="panel-body"> 
+												<div class="checkbox">
+													<input id="asidestyleall" class="styled" type="checkbox" onclick="checkAllStyle(this)" checked>
+													<label for="asidestyleall">全選</label>
+												</div> 
+												<div >
+													<div class="checkbox checkbox-inline "
+														 ng-repeat="x in ['长袖','短袖','七分袖']"> 
+															<input id="asidestyle{{$index}}" class="styled" type="checkbox" checked>
+															<label for="asidestyle{{$index}}">{{x}} </label>
+													</div> 
+												</div>
+						
+											</div>
+										</div>
+										
+  						
+  								<div class="panel-heading">
+										<a data-toggle="collapse" data-parent="#asidecolor"  href="#asidecolorcontent">
+											颜色选择
+										</a>
+									</div>
+									<div id="asidecolorcontent" class="panel-collapse collapse in">
+										<div class="panel-body"> 
+											<div class="checkbox">
+												<input id="asidecolorall" class="styled" type="checkbox" 
+												 onclick="checkAllColor(this)" checked>
+												<label for="asidecolorall">全選</label>
+											</div>
+										  
+											<div >
+												 
+												<div class="checkbox checkbox-inline asidecolor-{{$index}}"
+													 ng-repeat="x in ['#008000','#31708F','#B2DBA1']">
+													<style>
+														.asidecolor-{{$index}} input[type="checkbox"]:indeterminate + label::before,
+														.asidecolor-{{$index}} input[type="radio"]:indeterminate + label::before {
+														  background-color: {{x}};
+														  border-color: {{x}};
+														} 
+														.asidecolor-{{$index}} input[type="checkbox"]:indeterminate + label::after,
+														.asidecolor-{{$index}} input[type="radio"]:indeterminate + label::after {
+														  background-color: #fff;
+														}
+														
+														.asidecolor-{{$index}} input[type="checkbox"] + label::before,
+														.asidecolor-{{$index}} input[type="radio"] + label::before {
+														  background-color: {{x}};
+														  border-color: {{x}};
+														} 
+														.asidecolor-{{$index}} input[type="checkbox"]:checked + label::after,
+														.asidecolor-{{$index}} input[type="radio"]:checked + label::after {
+														  color: #fff;
+														}
+														
+														
+													</style>								
+												 
+														<input id="asidecolor{{$index}}" class="styled" type="checkbox" checked>
+														<label for="asidecolor{{$index}}">蓝色 </label>
+													</div>
+												 
+					
+											</div>
+					
+										</div>
+									</div>
+									
+  			
+  							<div class="panel-heading">
+									<a data-toggle="collapse" data-parent="#asidesize" href="#asidesizecontent">
+										尺寸选择
+									</a>
+								</div>
+								<div id="asidesizecontent" class="panel-collapse collapse in">
+									<div class="panel-body">
+				 
+										<div class="checkbox">
+											<input id="asidesizeall" class="styled" type="checkbox" onclick="checkAllStyle(this)" checked>
+											<label for="asidesizeall">全選</label>
+										</div> 
+										<div >
+											<div class="checkbox checkbox-inline "
+												 ng-repeat="x in ['M','L','XXL']"> 
+													<input id="asidesize{{$index}}" class="styled" type="checkbox" checked>
+													<label for="asidesize{{$index}}">{{x}} </label>
+											</div> 
+										</div> 
+									 
+				
+									</div>
+								</div>
+				
+  			
+							<div class="panel-heading">
+								<a data-toggle="collapse" data-parent="#asideprice"  href="#asidepricecontent">
+									价格区间
+								</a>
+							</div>
+							<div id="asidepricecontent" class="panel-collapse collapse in">
+								<div class="panel-body"> 
+									
+									<div class="checkbox" ng-repeat="x in ['$0 以上','$300 ~ $800','$800 ~ $2000','$2000 以上 ']" style="padding: 0;">
+										<input name="asideprice" id="asideprice{{$index}}" class="styled" type="radio" >
+										<label for="asideprice{{$index}}">{{x}}</label>
+									</div>
+								  
+								</div>
+							</div>
+				 
+			
+			
+      </div>
+      
+      <div id="asidebar" >
+        
+        
+        				<div class="panel-body" >  
+					
+									 <div style="width: 50%;float: left;">
+										<button type="button" class="btn btn-default " 
+											style="width: 100%;"  ><i class="fa fa-undo"></i>&emsp;重&emsp;置</button>
+									 </div> 
+									 <div style="width: 50%;float: left;">
+										 <button type="button" class="btn btn-default  "
+										 	 style="width: 100%;"  ><i class="fa fa-check"></i>&emsp;確&emsp;定</button>
+								
+									 </div>
+							   
+							</div>
+				
+      </div>
+      
+    </div>
+  </div>
+</div>

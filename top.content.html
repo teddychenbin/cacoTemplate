@@ -1,0 +1,345 @@
+<style>#brandone {
+	width: 100%;
+	background-color: #FFFFFF;
+	color: #000000;
+}
+
+#navbar,
+#brandone a {
+	color: #000000;
+}
+
+#navbar a:hover {
+	color: #968B8B;
+}
+
+#headtopright a {
+	cursor: pointer;
+}
+
+#headtopright a:hover {
+	color: #C8C8C8;
+}
+
+#headtopBAG span {
+	padding: 5px 8px;
+	border: 1px solid #444444;
+	color: #000000;
+	font-weight: 600;
+	margin-left: 8px;
+}
+
+#headtopBAGli a:hover {
+	color: #000000;
+}
+
+#headtopBAGli a:hover span {
+	color: #000000;
+}
+
+#maplink {
+	background-image: url("http://www.caco.url.tw/caco/2017CACO/images/CACO_2017_CACOMAP.png");
+	background-repeat: no-repeat;
+	width: 10px;
+	height: 50px;
+	margin-left: 5px;
+}
+
+#iglink {
+	background-image: url("http://www.caco.url.tw/caco/2017CACO/images/CACO_2017community-_CACOig.png");
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 50px;
+	margin-left: 5px;
+}
+
+#linelink {
+	background-image: url("http://www.caco.url.tw/caco/2017CACO/images/CACO_2017community-_CACOline.png");
+	background-repeat: no-repeat;
+	width: 18px;
+	height: 50px;
+	margin-left: 5px;
+}
+
+#fblink {
+	background-image: url("http://www.caco.url.tw/caco/2017CACO/images/CACO_2017community-_CACOfb.png");
+	background-repeat: no-repeat;
+	width: 8px;
+	height: 49px;
+	margin-left: 5px;
+}
+
+#brandtwo {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	background-color: white;
+	z-index: 1000;
+}
+
+#brandtwo a {
+	color: #000000;
+}
+
+#phonetopbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 10px 15px;
+	width: 100%;
+	z-index: 1000;
+	background: white;
+	border-bottom: 1px solid #e0e0e0;
+}
+
+#phonetopbar input {}
+
+#phonetopbar>div>:last-child {
+	text-align: right;
+}</style>
+
+<nav id="brandone" class="navbar navbar-default navbar-static-top hidden-xs hidden-sm">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+		            </button>
+
+			<a class="navbar-brand" id="brandlink" data-imgsrc="{{menu | nodeattr:paths[0]:'imgsrc_active'}}" style="font-size: 2em;font-weight: bold;background-color: {{menu | nodeattr:paths[0]:'background'}};" href="#">
+
+				{{menu | nodeattr:paths[0]:'title'}}
+			</a>
+
+		</div>
+
+		<div id="navbar" class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li ng-repeat="x in menu | nodes:'menu'" onmouseover="showbrandimg(this)" onmouseleave="hidenbrandimg(this)" data-imgsrc="{{x.imgsrc_active}}">
+					<a ng-hide="x.id === paths[0]" href="#">{{x.title}}</a>
+				</li>
+
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right navbar-collapse" id="headtopright">
+
+				<li>
+					<a href="#" id="maplink"></a>
+				</li>
+				<li>
+					<a href="#" id="iglink"></a>
+				</li>
+				<li>
+					<a href="#" id="linelink"></a>
+				</li>
+				<li>
+					<a href="#" id="fblink"></a>
+				</li>
+				<li>
+					<a href="#">首頁</a>
+				</li>
+				<li>
+					<a href="#">聯繫</a>
+				</li>
+				<li>
+					<a href="#">獎勵</a>
+				</li>
+				<li>
+				
+					<a ng-if="identify === null" ui-sref="login({template:''})"><i class="fa fa-user"></i>登入</a>
+					<a ng-if="identify !== null" ui-sref="member({template:''})"><i class="fa fa-user"></i>我的</a>
+				</li>
+				<li id="headtopBAGli" onmouseover="showBag(this)">
+					<a  ui-sref="shoppingcart({template:''})" id="headtopBAG" data-container="body" data-toggle="popover" data-placement="bottom">
+						<i class="fa fa-shopping-cart"></i>&nbsp;購物車<span>0</span>
+
+						<!--<div id="shoppingCART" style="display: none;">
+							<div onmouseleave="hideBag()">
+								<div class="row" style="height: 25px; font-weight: bold;">&nbsp;最新加入的商品</div>
+								<div class="row" style="height: 40px;background-color: #FAFAD2;padding: 10px 2px;">
+									<span style="background-color: #EEE8AA;padding:5px;">满减</span>购满￥200减￥20优惠
+								</div>
+								<div class="row" style="padding: 10px 0px;">
+									<div class="col-xs-3 col-md-3"><img src="//img11.360buyimg.com/n4/s160x160_jfs/t4192/23/3855193041/419597/dd7848eb/58e843ccNefdb731c.jpg" width="60px" /></div>
+									<div class="col-xs-5 col-md-5">康巴斯挂钟16英寸万年历温湿度针表</div>
+									<div class="col-xs-4 col-md-4" style="text-align: right;">
+										<div>￥108.00</div>
+										<div>x1</div>
+									</div>
+								</div>
+								<div class="row" style="height: 50px; background-color:#F5F5F5;padding-top: 5px;">
+									<div class="col-xs-6 col-md-6">
+										<div>共一件商品</div>
+										<div>共计￥108.00</div>
+									</div>
+									<div class="col-xs-6 col-md-6"><button type="button" onclick="alert(1)" class="btn btn-danger">去购物车</button></div>
+								</div>
+
+							</div>
+						</div>-->
+					</a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-search"></i></a>
+				</li>
+
+			</ul>
+
+		</div>
+	</div>
+
+</nav>
+
+<style>#navbar2 .dropdown-toggle:hover {
+	background-color: #FACE00;
+	color: black;
+}
+
+.dropdown-menu>.active>a {
+	background-color: #E7E7E7;
+}</style>
+
+<nav class="navbar navbar-default navbar-static-top  hidden-xs hidden-sm" id="brandtwo">
+	<div class="container-fluid" style="padding: 0;">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar2" aria-expanded="false" aria-controls="navbar">
+			            <span class="sr-only"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+			            <span class="icon-bar"></span>
+		            </button>
+
+		</div>
+		<div id="navbar2" class="navbar-collapse collapse">
+
+			<ul class="nav navbar-nav" ng-repeat="x in menu | nodes:paths[0]" ng-hide="customVar0 !== $index">
+				<li ng-repeat="y in menu | nodes:x.id" role="presentation" class="dropdown">
+					<a class="dropdown-toggle " data-toggle="dropdown" href="#{{y.id}}" role="button" aria-haspopup="true" aria-expanded="false">
+						{{y.name}}
+					</a>
+
+					<ul class="dropdown-menu">
+						<li ng-repeat="z in menu | nodes:y.id">
+							<a ui-sref="{{z.url}}" style="color: #000000;">{{z.name}}</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul class="nav navbar-nav navbar-right" id="headtopright">
+				<li>
+					<a ng-if="identify === null" ui-sref="login"><i class="fa fa-user"></i></a>
+					<a ng-if="identify != null" ui-sref="member"><i class="fa fa-user"></i></a>
+				</li>
+				<li id="headtopBAGli">
+					<a href="#" id="headtopBAG"><i class="fa fa-shopping-cart"></i><span>0</span></a>
+				</li>
+				<li>
+					<a href="#"><i class="fa fa-search"></i>&emsp;</a>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+
+</nav>
+
+<div id="phonetopbar" class="container-fluid hidden-lg hidden-md ">
+
+	<div class="btn-group btn-group-justified" role="group" aria-label="...">
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			  <i class="fa fa-ellipsis-h" ></i>
+			</button>
+			<ul class="dropdown-menu">
+				<li ui-sref="memberfollow({template:''})">
+					&nbsp;<i class="fa fa-heart-o"></i>&nbsp;关注的商品
+				</li>
+				<li  ui-sref="memberbrowse({template:''})">
+					 &nbsp;<i class="fa fa-history"></i>&nbsp;浏览历史
+				</li>
+			</ul>
+		</div> 
+		<div class="btn-group" role="group">
+
+			<button type="button" class="btn btn-default" onclick="home()">
+			  <i class="fa fa-search" ></i>
+			</button>
+		</div>
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default" onclick="member()">
+			  <i class="fa fa-info-circle" ></i>
+			</button>
+		</div> 
+		<div class="btn-group" role="group">
+			<button type="button" class="btn btn-default" onclick="member()">
+			  <i class="fa fa-shopping-cart" ></i>
+			</button>
+		</div> 
+	</div>
+
+</div>
+
+<script type="text/javascript-lazy">function showbrandimg(sender) {
+
+	var imgsrc = $(sender).data("imgsrc")
+	$("#brandimg").attr("src", imgsrc);
+
+}
+
+function hidenbrandimg(sender) {
+
+	var imgsrc = $("#brandlink").data("imgsrc")
+	$("#brandimg").attr("src", "");
+
+}
+
+var bagHandle = $("#headtopBAG").popover({
+	trigger: 'manual',
+	html: true,
+	width: '500px',
+	content: $("#shoppingCART").html(),
+	animation: false
+});
+
+function showBag(sender) {
+	bagHandle.popover('show');
+}
+
+function hideBag() {
+	bagHandle.popover('hide');
+}
+
+setInterval(function() {
+
+}, 1000);
+
+$(function() {
+
+	if($("#brandone").is(":visible")) {
+
+		if($(window).scrollTop() < 260) {
+			$("#brandtwo").css("top", "-1000px")
+		}
+
+		$(window).bind("scroll", function() {
+
+			if($(window).scrollTop() < 260) {
+
+				$("#brandone").css("top", "0px")
+				$("#brandtwo").css("top", "-1000px")
+
+			} else {
+				$("#brandtwo").css("top", "0px")
+				$("#brandone").css("top", "-1000px")
+
+			}
+
+		});
+
+	}
+
+})</script>

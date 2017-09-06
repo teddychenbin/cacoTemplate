@@ -1,0 +1,64 @@
+<div id "asidewrap" class="aside" tabindex="-1" role="dialog">
+	<div class="aside-dialog">
+		<div class="aside-content">
+			<div id="asideheader" class="aside-header" ng-show="title">
+				<button id="asideclose" type="button" class="close" ng-click="$hide()">&times;</button>
+				<h4 class="aside-title">{{menu | nodeattr:paths[0]:'name'}}</h4>
+			</div>
+
+			<div id="asidebar">
+					
+						 <div class="panel-body" >  
+					
+									 <div ng-repeat="x in menu | nodes:paths[0]" style="width: 50%;float: left;">
+										<button type="button" class="btn btn-default " 
+											ng-class="$index | ifvalue:customVar0:'in active':''" 
+											onclick="selectSecmenu(this)" data-index="{{$index}}"
+											style="width: 100%;">{{x.title}}&emsp;<i class="{{x.classname}}"></i></button>
+									 </div> 
+									 
+							</div>
+							
+			</div>
+
+			<div id="asidebody" ng-repeat="x in menu | nodes:paths[0]"
+					ng-show="$index === customVar0"
+				  class="aside-body ">
+ 					
+ 									 <div ng-repeat-start="y in menu | nodes:x.id"  class="panel-heading"  >
+											<a data-toggle="collapse" data-parent="#aside{{y.id}}" href="#aside{{y.id}}content">
+												{{y.name}}
+											</a>
+										</div>
+										<div ng-repeat-end id="aside{{y.id}}content" class="panel-collapse collapse in">
+											<div class="panel-body"> 
+												
+													<ul  ng-repeat="z in menu | nodes:y.id" class="list-group  items"
+														style="padding: 0;margin: 0;border: 0;" > 
+														<li  ui-sref="{{z.url}}" class="list-group-item" style="border: 0;">{{z.name}}</li> 
+													</ul> 
+																	 		
+											</div>
+										</div>
+										
+			</div>
+
+ 			
+ 		 <div id="asidebar" >
+        
+						 <div class="panel-body" >  
+					
+									 <div ng-repeat="x in menu | nodes:paths[0]" style="width: 50%;float: left;">
+										<button type="button" class="btn btn-default " 
+											ng-class="$index | ifvalue:customVar0:'in active':''" 
+											onclick="selectSecmenu(this)" data-index="{{$index}}"
+											style="width: 100%;">{{x.title}}&emsp;<i class="{{x.classname}}"></i></button>
+									 </div> 
+									 
+							</div>
+							
+      </div>
+
+		</div>
+	</div>
+</div>

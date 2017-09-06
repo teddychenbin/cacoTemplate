@@ -1,0 +1,370 @@
+<style>
+	body {
+		padding: 0;
+		margin: 0;
+		font-family: "黑体";
+	}
+	
+	a {
+		color: #000000;
+		cursor: pointer;
+	}
+	
+	a:hover {
+		color: #968B8B;
+		text-decoration: none;
+	}
+	
+	button {
+		border-radius: 0 !important;
+	}
+	/*
+	 * override
+	 */
+	
+	.btn-link {
+		color: #000000 !important;
+	}
+	
+	.panel-default {
+		border-radius: 0 !important;
+	}
+	
+	.dropdown-menu {
+		border-radius: 0 !important;
+	}
+	
+	.list-group-header {
+		background: #222222;
+		color: white;
+	}
+	
+	#price {
+		color: #d9534f;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	
+	#price-inlist {
+		color: #d9534f;
+		font-size: 2em;
+		font-weight: bold;
+	}
+	
+	#orgprice {
+		text-decoration: line-through;
+		font-weight: bold;
+	}
+	
+	#cap {
+		padding: 0px 0px 20px 0px;
+		font-size: 2em;
+		font-weight: bold;
+		border-bottom: 1px solid #e0e0e0;
+		margin-left: -15px;
+		margin-right: -15px;
+	}
+	
+	#submit {
+		width: 100%;
+		background: #222222;
+		color: white;
+	}
+	
+	#desc {
+		padding: 20px 0px 20px 0px;
+	}
+	
+	#content {
+		border-top: 1px solid #e0e0e0;
+	}
+	
+	#listbarwrap {
+		margin-top: 15px
+	}
+	
+	#listbarwrap>:first-child {
+		padding-right: 0;
+	}
+	
+	#listbar-centerwrap {
+		text-align: center;
+		padding: 0;
+	}
+	
+	#listbarwrap>:last-child {
+		text-align: right;
+		padding-left: 0;
+	}
+	
+	#listbar-placeholder {
+		margin-top: 45px;
+	}
+	
+	#navpath {
+		margin-bottom: 0px;
+		padding-left: 0;
+		background: transparent;
+	}
+	
+	#listwrap {
+		margin-top: 15px
+	}
+	
+	#itemlistwrap {
+		padding: 0;
+	}
+	
+	#itemlistwrap>div {
+		padding-bottom: 30px;
+		text-align: center;
+	}
+	
+	#itemlistwrap>div>div:not(:first-child) {
+		padding-top: 10px;
+	}
+	
+	.imgmask {
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 150;
+		background-color: #444444;
+		opacity: 0.4;
+		width: 100%;
+		height: 100%;
+	}
+	
+	.imgmaskwrap:hover .imgmask {
+		display: none;
+	}
+	
+	.imgnavactive {
+		border: 1px solid black;
+	}
+	
+	.imgmasktitle {
+		position: absolute;
+		top: 45%;
+		width: 100%;
+		height: 50px;
+		text-align: center;
+		font-size: 2em;
+		font-weight: 400;
+		color: white;
+		z-index: 200;
+	}
+	
+	.btnselected {
+		border: 1px solid #d9534f;
+	}
+	
+	.split {
+		margin-top: 10px;
+		height: 1px;
+		border-bottom: 1px dashed #e0e0e0;
+	}
+	
+	#asidewrap {
+		padding: 0 !important;
+		margin: -15px !important;
+	}
+	
+	#asideheader {
+		background: white !important;
+		color: black !important;
+	}
+	
+	#asidebar {
+		border-top: 1px solid #e0e0e0;
+		background: red;
+	}
+	
+	#asidebar div {
+		padding: 0px 0px !important;
+	}
+	
+	#asideclose {
+		color: black !important;
+		margin-top: 5px !important;
+	}
+	
+	#asidebody {
+		padding: 0px 15px;
+		margin: 0px;
+	}
+	
+	#asidebody a {
+		color: #337ab7;
+	}
+	
+	#asidebody>div {
+		padding: 0;
+	}
+	
+	#asidebody div[class*="panel-heading"] {
+		margin-top: 20px;
+		border-bottom: 1px solid #e0e0e0;
+	}
+	
+	#asidebody div[class*="panel-body"] {
+		padding: 0;
+	}
+	
+	#followwrap {
+		border: 1px solid #e0e0e0;
+		padding: 0;
+		margin: 0;
+	}
+	
+	#followwrap img,
+	p {
+		padding: 0 15px;
+		width: 100%;
+		text-align: center;
+	}
+	
+	#follow-price {
+		color: #d9534f;
+		font-size: 1.5em;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	#footbtnpan {
+		border-top: 1px solid #e0e0e0;
+		background-color: #F9F9F9;
+		padding-left: 10px;
+		padding-bottom: 10px;
+		text-align: left;
+	}
+	
+	#footbtnpan button {
+		margin: 5px 10px 0 0;
+	}
+	
+	#btnqty {
+		width: 110px;
+	}
+	
+	#btnqty * {
+		border-radius: 0;
+		background: white;
+	}
+</style>
+<script type="text/javascript-lazy">
+	/*
+	 * 图片轮播
+	 * 前一张
+	 */
+	function prevImg(sender) {
+		$(sender).parent().carousel("prev");
+
+		setTimeout(function() {
+			$("img.lazy").lazyload();
+			if(window.afterPrevImg != undefined) {
+				window.afterPrevImg(sender);
+			}
+		}, 1000);
+
+	}
+	/*
+	 * 图片轮播
+	 * 下一张
+	 */
+	function nextImg(sender) {
+		$(sender).parent().carousel("next");
+
+		setTimeout(function() {
+			$("img.lazy").lazyload();
+			if(window.afterNextImg != undefined) {
+				window.afterNextImg(sender);
+			}
+		}, 1000);
+	}
+
+	function setShowCount(count) {
+		console.info('showcount ' + count)
+		sessionStorage.setItem('showcount', count);
+
+		var itemwrap = $('#itemlistwrap').children("div");
+
+		itemwrap.removeClass("col-md-12");
+		itemwrap.removeClass("col-xs-12");
+		itemwrap.removeClass("col-md-6");
+		itemwrap.removeClass("col-xs-6");
+		itemwrap.removeClass("col-md-4");
+		itemwrap.removeClass("col-md-3");
+
+		if(count === 1) {
+			itemwrap.addClass("col-md-12");
+			itemwrap.addClass("col-xs-12");
+		} else if(count === 2) {
+			itemwrap.addClass("col-md-6");
+			itemwrap.addClass("col-xs-6");
+		} else if(count === 3) {
+			itemwrap.addClass("col-md-4");
+		} else if(count === 4) {
+			itemwrap.addClass("col-md-3");
+		}
+
+	}
+
+	function getShowCount() {
+		var showcount = sessionStorage.getItem('showcount');
+		if(showcount === null) {
+			if($(window).width() >= 1024) {
+				sessionStorage.setItem('showcount', 4);
+			} else if($(window).width() >= 992) {
+				sessionStorage.setItem('showcount', 3);
+			} else {
+				sessionStorage.setItem('showcount', 2);
+			}
+		}
+		return parseInt(sessionStorage.getItem('showcount'));
+	}
+
+	function showImgNav(sender) {
+
+		var links = $(sender).children('a');
+
+		for(var i = 0; i < links.length; i++) {
+			$(links[i]).show();
+		}
+	}
+
+	function hideImgNav(sender) {
+
+		var links = $(sender).children('a');
+		for(var i = 0; i < links.length; i++) {
+			$(links[i]).hide();
+		}
+	}
+
+	var scope = angular.element($('.ng-scope')).scope();
+	scope.setCustomVar0(0);
+
+	function selectSecmenu(sender) {
+
+		var index = $(sender).data("index");
+		scope.$apply(function() {
+			scope.setCustomVar0(index);
+		});
+	}
+
+	function minu(inputid) {
+		var num = parseInt($("#" + inputid).val());
+		if(num >= 2) {
+			$("#" + inputid).val(num - 1);
+		}
+
+	}
+
+	function plus(inputid) {
+		var num = parseInt($("#" + inputid).val());
+		if(num < 999) {
+			$("#" + inputid).val(num + 1);
+		}
+
+	}
+</script>

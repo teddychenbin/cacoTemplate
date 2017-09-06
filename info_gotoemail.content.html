@@ -1,0 +1,33 @@
+<div ng-include="'top.html'">
+</div>
+<div ng-include="'css.html'"></div>
+
+<div   class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+
+	<div id="cap" class="row">
+		<div class="col-xs-1 col-md-4"></div>
+		<div class="col-xs-10 col-md-4">郵箱綁定 </div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-xs-1 col-md-4 "></div>
+		<div class="col-xs-10 col-md-4 ">
+
+			<div id="desc">
+				<span>驗證信息已經發送到{{message}}郵箱,</span><br>
+				<span>請您在24小時內進行郵箱驗證！</span>
+				<br>
+			</div>
+
+			<div>
+				<label id="labcallback" style="color: red;"></label>
+			</div>
+
+		</div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+</div>
+<div ng-include="'foot.html'"></div>

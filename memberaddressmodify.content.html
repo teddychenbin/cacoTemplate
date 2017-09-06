@@ -1,0 +1,234 @@
+ 
+<div ng-include="'top.html'"></div>
+<div ng-include="'css.html'"></div>
+
+<div class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+	<div id="cap" class="row">
+		<div class="col-xs-1 col-md-4"></div>
+		<div class="col-xs-10 col-md-4">地址信息 </div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+	
+	<div class="row">
+
+		<div class="col-xs-1 col-md-4 "></div>
+		<div class="col-xs-10 col-md-4 ">
+
+	
+
+			<form role="form" id="addrForm" name="addrForm"  style="margin-top: 20px;">
+
+				<div class="form-group">
+					<label class="control-label" for="contacts">標題註解 ex(家，公司..)：</label>
+					<input class="form-control " ng-value="address.name" type="text" id="name" name="name" placeholder=" " />
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="contacts">收貨人：</label>
+					<input class="form-control " ng-value="address.contacts" type="text" id="contacts" name="contacts" placeholder=" 請輸入收貨人" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="mobphoneno">手機號：</label>
+					<input class="form-control " ng-value="address.mobphoneno" type="text" id="mobphoneno" name="mobphoneno" placeholder=" 請輸手機號" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="phoneno">固定電話：</label>
+					<input class="form-control " ng-value="address.phoneno" type="text" id="phoneno" name="phoneno" placeholder=" 請輸入固定電話" />
+				</div>
+ 
+	
+				<div id="expander">
+					<div class="form-group">
+						<button type="button" class="btn btn-link" ng-style="{'color':address.country != null?'#5cb85c':'#777'}" ng-bind="address.country.name | nvl:'国'">
+						</button>/
+						<button type="button" class="btn btn-link" ng-bind="address.state.name | nvl:'省'" ng-style="{'color':address.state != null?'#5cb85c':'#777'}"> 
+						</button>/
+						<button type="button" class="btn btn-link" ng-bind="address.city.name | nvl:'市'" ng-style="{'color':address.city != null?'#5cb85c':'#777'}"> 
+						</button>/
+						<button type="button" class="btn btn-link" ng-bind="address.district.name | nvl:'区,縣,郡'" ng-style="{'color':address.district != null?'#5cb85c':'#777'}"> 	
+						</button>
+						<button type="button" ng-click="clear()"  class="btn btn-link" ng-bind="'重置'">
+						</button>
+					</div>
+					<div class="panel panel-info" ng-hide="currGovadmdiv.length === 0">
+						<div class="btn-group" role="group">
+							<div ng-repeat="x in currGovadmdiv" class="col-md-4">
+								<button type="button" ng-if="address.country === null" ng-click="selectCountry(x)" class="btn btn-link">{{x.name}}</button>
+
+								<button type="button" ng-if="address.country != null && address.state === null" ng-click="selectState(x)" class="btn btn-link">{{x.name}}</button>
+
+								<button type="button" ng-if="address.state != null && address.city === null" ng-click="selectCity(x)" class="btn btn-link">{{x.name}}</button>
+
+								<button type="button" ng-if="address.city != null && address.district === null" ng-click="selectDistrict(x)" class="btn btn-link">{{x.name}}</button>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="addr1">詳細地址：</label>
+					<input class="form-control " ng-value="address.addr1" type="text" id="addr1" name="addr1" placeholder=" 請輸入地址" />
+				</div>
+				<div class="form-group">
+					<input class="form-control " ng-value="address.addr2" type="text" id="addr2" name="addr2" placeholder=" 請輸入地址" />
+				</div>
+				<div class="form-group">
+					<input class="form-control " ng-value="address.addr3" type="text" id="addr3" name="addr3" placeholder=" 請輸入地址" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="zipcode">郵政編碼：</label>
+					<input class="form-control " ng-value="address.zipcode" type="text" id="zipcode" name="zipcode" placeholder=" 請輸入郵政編碼" />
+				</div>
+
+				<div class="form-group">
+					<label id="labcallback" style="color: #d9534f;"></label>
+				</div>
+				<div class="form-group">
+					<button id="submit" type="submit" class="btn btn-defaul">
+								  <i class="fa fa-edit"></i>&nbsp;
+									  提交</button>
+				</div>
+			</form>
+
+		<div id="desc">
+				<span>請確保地址寫的詳細正確。</span><br>
+				<span>若您尚未加入會員，歡迎FB帳號直接登入加入會員。</span><br>
+				<span>舊會員則請勿再以FB帳號登入會員，原帳號購物金恕無法共用</span><br>
+				<span>如有會員資料異動或取消電子報，請隨時至會員中心修改更新。</span><br>
+
+			</div>
+			
+		</div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+</div>
+
+<div ng-include="'foot.html'"></div>
+
+<style>
+	/*#expander {}
+	
+	#expander>div:first-child {
+		background: transparent;
+		border: 0;
+		
+	}*/
+</style>
+<script type="text/javascript-lazy">
+	$.registCallback = function(failMsg) {
+		$('#labcallback').text(failMsg);
+		$('#addrForm').bootstrapValidator('resetForm');
+
+	};
+	$("#addrForm").bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			name: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 64,
+						message: '標題註解 1-64个字符之间'
+					}
+				}
+			},
+			contacts: {
+				validators: {
+					notEmpty: {
+						message: '請輸入收貨人'
+					},
+					stringLength: {
+						min: 1,
+						max: 128,
+						message: '收貨人 1-128个字符之间'
+					}
+				}
+			},
+			mobphoneno: {
+				validators: {
+					notEmpty: {
+						message: '請輸入手機號'
+					},
+					stringLength: {
+						min: 1,
+						max: 24,
+						message: '手機號 1-128个字符之间'
+					}
+				}
+			},
+			phoneno: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 24,
+						message: '固定電話 1-128个字符之间'
+					}
+				}
+			},
+			addr1: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 128,
+						message: '地址 1-128个字符之间'
+					}
+				}
+			},
+			addr2: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 128,
+						message: '地址 1-128个字符之间'
+					}
+				}
+			},
+			addr3: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 128,
+						message: '地址 1-128个字符之间'
+					}
+				}
+			},
+			zipcode: {
+				validators: {
+					stringLength: {
+						min: 1,
+						max: 24,
+						message: '郵政編碼 1-128个字符之间'
+					}
+				}
+			}
+
+		}
+	}).on('success.form.bv', function(e) {
+
+		$('#labcallback').text('');
+		e.preventDefault();
+		scope.$apply(function() {
+			scope.save({
+				name: $('#name').val(),
+				addr1: $('#addr1').val(),
+				addr2: $('#addr2').val(),
+				addr3: $('#addr3').val(),
+				zipcode: $('#zipcode').val(),
+				phoneno: $('#phoneno').val(),
+				contacts: $('#contacts').val(),
+				mobphoneno: $('#mobphoneno').val()
+			});
+		});
+
+	});
+</script>

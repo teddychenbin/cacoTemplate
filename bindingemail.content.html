@@ -1,0 +1,88 @@
+<div ng-include="'top.html'">
+
+</div>
+<div ng-include="'css.html'"></div>
+
+<div   class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+
+	<div id="cap" class="row">
+		<div class="col-xs-1 col-md-4"></div>
+		<div class="col-xs-10 col-md-4">郵箱綁定 </div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-xs-1 col-md-4 "></div>
+		<div class="col-xs-10 col-md-4 ">
+
+			<form role="form" id="bindingemailForm" name="bindingemailForm" style="margin-top: 20px;">
+				<div class="form-group">
+					<label class="control-label" for="id">電子郵件：</label>
+					<input class="form-control " type="text" ng-value="accountbinding.id" id="email" name="email" placeholder=" 請輸入郵件地址" />
+				</div>
+
+				<div class="form-group">
+
+					<label id="labcallback" style="color: red;"></label>
+				</div>
+
+				<div class="form-group">
+					<button id="submit" type="submit" class="btn btn-defaul">
+								  <i class="fa fa-send"></i>&nbsp;
+									  發送驗證</button>
+				</div>
+			</form>
+
+			<div id="desc">
+				<span>我们以最高标准为客户服务而感到自豪，我们力求达到您最重要的标准。</span><br>
+				<span>我们的网站是安全可靠的，让您的购物体验放心，提交的信息是加密和保护您的安全。</span><br>
+				<span>如果您有任何问题，请与我们联系。</span><br>
+			</div>
+
+		</div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+</div>
+
+<div ng-include="'foot.html'"></div>
+
+<script type="text/javascript-lazy">
+	$.registCallback = function(failMsg) {
+		$('#labcallback').text(failMsg);
+		$('#bindingemailForm').bootstrapValidator('resetForm');
+		//$('#submit').click();
+	};
+
+	$("#bindingemailForm").bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			email: {
+				validators: {
+					notEmpty: {
+						message: '請輸入郵箱'
+					},
+					emailAddress: {
+						message: '郵箱格式有誤'
+					}
+				}
+			}
+		}
+	}).on('success.form.bv', function(e) {
+
+		$('#labcallback').text('');
+		e.preventDefault();
+
+		scope.$apply(function() {
+			scope.send({
+				id: $('#email').val()
+			});
+		});
+
+	});
+</script>

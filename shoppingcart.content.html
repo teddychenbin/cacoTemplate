@@ -1,0 +1,140 @@
+<!--shoppingcart-->
+<div ng-include="'head.html'"></div>
+<div ng-include="'css.html'"></div>
+
+<div class="container-fluid">
+
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+	<div class="row">
+		<div class="col-md-1"></div>
+		<div class="col-md-10  hidden-xs hidden-sm" >
+			<ol class="breadcrumb" disabled="disabled" style="margin-bottom: 0px;padding-left:0; background: transparent;">
+				<li>
+					HOME/BAG
+				</li>
+			</ol>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+
+	<div class="row" style="padding-top: 30px;">
+		<div class="col-md-1"></div>
+		<div class="col-xs-12 col-md-10" >
+			<div class="col-md-4" style="background-color: #000000; color: #FFFFFF;">
+				<div class="col-md-5" style="text-align: right;font-size: 6em;">01</div>
+				<div class="col-md-7" style="margin-top: 30px;">
+					<div>確認清單及選擇付款方式</div>
+					<div>CONFIRM THE LIST &</div>
+					<div>CHOOSE PAYMENT METHOD</div>
+				</div>
+			</div>
+			<div class="col-md-4" style="background-color: #F2F2F2; color: #000000;">
+				<div class="col-md-5" style="text-align: right;font-size: 6em;">02</div>
+				<div class="col-md-7" style="margin-top: 40px;">
+					<div>填寫訂購資料</div>
+					<div>FILL IN THIE ADD</div>
+				</div>
+			</div>
+			<div class="col-md-4" style="background-color: #F2F2F2; color: #000000;border-left: 1px solid #FFFFFF;">
+				<div class="col-md-5" style="text-align: right;font-size: 6em;">03</div>
+				<div class="col-md-7" style="margin-top: 40px;">
+					<div>購物完成</div>
+					<div>SHOPPING COMPLETED</div>
+				</div>
+			</div>
+
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	<style>
+		.shoppingcarttable table tr{
+			border-bottom: 1px solid #e0e0e0;
+		}
+		.shoppingcarttable table tr td{
+			padding: 10px 0px;
+		}
+	</style>
+	<div class="row" style="padding-top: 30px;">
+		<div class="col-md-1"></div>
+		<div class="col-xs-12 col-md-10" >
+			<div style="border-bottom: 1px solid #e0e0e0;font-size: 1.2em;font-weight: bold;">購物車(3)</div>
+			<div class="shoppingcarttable">
+				<table class="col-md-12">
+					<tr style="font-weight: bold;">
+						<td class="col-md-2">商品</td>
+						<td class="col-md-2">描述</td>
+						<td class="col-md-2">顏色</td>
+						<td class="col-md-1">尺寸</td>
+						<td class="col-md-2" style="text-align: center;">件數</td>
+						<td class="col-md-2">金額</td>
+						<td class="col-md-1" style="text-align: center;">刪除</td>
+					</tr>
+					<tr ng-repeat="x in [1,2,3]">
+						<td class="col-md-2"><img src="//img12.360buyimg.com/n7/jfs/t2587/225/2759428855/450235/58473ee/5771f587N01d53208.jpg" width="70px"/></td>
+						<td class="col-md-2">MIT棋盤格騎士短T</td>
+						<td class="col-md-2">14亞麻灰</td>
+						<td class="col-md-1">M</td>
+						<td class="col-md-2" style="text-align: center;"><i class="fa fa-minus"></i>&emsp;1&emsp;<i class="fa fa-plus"></i></td>
+						<td class="col-md-2">NT<i class="fa fa-usd"></i>1380</td>
+						<td class="col-md-1" style="text-align: center;"><i class="fa fa-remove"></i></td>
+					</tr>
+				</table>
+			</div>
+
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	
+	<style>
+		
+		.discountcoupons p{
+			text-align: left;
+			margin: 0px -15px;
+			font-weight: bold;
+			font-size: 1.1em;
+		}
+	</style>
+	<div class="row" style="padding-top: 30px;">
+		<div class="col-md-1"></div>
+		<div class="col-xs-12 col-md-10 discountcoupons" style="padding: 0;">
+			<div class="col-md-3">
+				<p>使用電子折價券</p>
+			</div>
+			<div class="col-md-2">
+				<p>購物金折抵</p>
+			</div>
+			<div class="col-md-2">
+				<p>運送區域</p>
+			</div>
+			<div class="col-md-3">
+				<p>付款方式</p>
+			</div>
+			<div class="col-md-2">
+				<p>運送方式</p>
+			</div>
+		</div>
+		<div class="col-md-1"></div>
+	</div>
+	
+	
+
+</div>
+
+<div ng-include="'foot.html'"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

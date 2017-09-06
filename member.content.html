@@ -1,0 +1,98 @@
+<div ng-include="'top.html'">
+
+</div>
+<div ng-include="'css.html'"></div>
+
+<div  class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+	<div id="cap" class="row">
+		<div class="col-xs-1 col-md-1"></div>
+		<div class="col-xs-7 col-md-7">會員中心 </div>
+		<div class="col-xs-3 col-md-3"> <button type="button"  ng-click="logout()" class=" btn btn-link col-xs-5 col-md-5">
+				  <i class="fa fa-sign-out"></i>&nbsp;登&nbsp;出
+						</button> </div>
+		<div class="col-xs-1 col-md-1">
+
+		</div>
+	</div>
+
+	<div class="row" style="padding-top: 20px;">
+		<div class="col-md-1"></div>
+
+		<div class="col-md-3">
+			<ul class="list-group items">
+				<li class="list-group-item list-group-header"><i class="fa fa-cog"></i>&nbsp;設置/安全</li>
+				<li ui-sref="membermodify({template:''})" class="list-group-item">
+					<i class="fa fa-user"></i>&nbsp;賬號信息&emsp;{{identify.id}}
+				</li>
+				<li ui-sref="actionauth({template:'email',actiontype:'changepassword',authtype:'email'})" class="list-group-item">
+					<i class="fa fa-lock"></i>&nbsp;修改密码&emsp;******
+				</li>
+				<li class="list-group-item" ng-if="identify.isemailbinding === true">
+					<i class="fa fa-envelope"></i>&nbsp;郵箱綁定&emsp;{{identify.email | privatestring:'*':4}}&emsp;
+					<i class="fa fa-check" style="color: green;">已綁定</i>
+				</li>
+				<li ui-sref="bindingemail({template:''})" class="list-group-item" ng-if="identify.isemailbinding != true">
+					<i class="fa fa-envelope"></i>&nbsp;郵箱綁定&emsp;{{identify.email | privatestring:'*':4}}&emsp;
+					<i class="fa fa-warning" style="color: #d9534f;">未綁定</i>
+				</li>
+				<li ui-sref="memberaddressmodify({template:'',pk:'',ismajor:'true'})" class="list-group-item"><i class="fa fa-bus"></i>&nbsp;主通訊/收貨地址(訂單默認)</li>
+				<li ui-sref="memberaddresslist({template:''})" class="list-group-item"><i class="fa fa-bus"></i>&nbsp;其他收貨地址</li>
+			</ul>
+		</div>
+
+		<div class="col-md-3 ">
+
+			<ul class="list-group  items">
+
+				<li class="list-group-item list-group-header"><i class="fa fa-book"></i>&nbsp;訂單中心</li>
+
+				<li class="list-group-item"><i class="fa fa-file-text"></i>&nbsp;歷史訂單</li>
+
+				<li class="list-group-item"><i class="fa fa-clock-o"></i>&nbsp;待出貨訂單</li>
+
+				<li class="list-group-item"><i class="fa fa-circle-o-notch"></i>&nbsp;我的活動</li>
+
+				<li class="list-group-item"><i class="fa fa-commenting"></i>&nbsp;評論曬單</li>
+
+				<li class="list-group-item"><i class="fa fa-shopping-bag"></i>&nbsp;我的常購商品</li>
+
+			</ul>
+
+		</div>
+		<div class="col-md-3 ">
+			<ul class="list-group items">
+
+				<li class="list-group-item  list-group-header"><i class="fa fa-heart"></i>&nbsp;關注中心</li>
+
+				<li class="list-group-item"  ui-sref="memberfollow({template:''})"><i class="fa fa-heart-o"></i>&nbsp;關注的商品</li>
+
+				<li class="list-group-item"><i class="fa fa-home"></i>&nbsp;關注的店鋪</li>
+
+				<li class="list-group-item"><i class="fa fa-usd"></i>&nbsp;關注的活動</li>
+
+				<li class="list-group-item"  ui-sref="memberbrowse({template:''})"><i class="fa fa-history"></i>&nbsp;瀏覽歷史</li>
+
+			</ul>
+		</div>
+
+		<div class="col-md-1"></div>
+	</div>
+</div>
+<div ng-include="'foot.html'"></div>
+
+<style>
+	.items>li:first-child {
+		cursor: default;
+		font-size: 1.2em;
+		font-weight: bold;
+	}
+	
+	.items span {
+		line-height: 2em;
+	}
+	
+	li:hover {
+		cursor: pointer; 
+	}
+</style>
