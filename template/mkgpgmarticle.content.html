@@ -1,0 +1,52 @@
+<div ng-include="'head.html'">
+</div>
+<div ng-include="'css.html'"></div>
+
+<div id="content" class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+	<div class="row">
+		<div class="col-md-12  hidden-xs hidden-sm">
+			<ol class="breadcrumb" disabled="disabled" style="margin-bottom: 0px;padding-left:0; background: transparent;">
+				<li ng-repeat="x in paths|range:1:paths.length">
+					{{menu | nodeattr:x:'name'}}
+				</li>
+			</ol>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="carousel slide col-md-12" data-interval="false" style="padding: 0;">
+			<div class="carousel-inner">
+				<div class="item active">
+					<img class="lazy" src="{{config.loadimg}}" data-original="{{mkgpgmarticle.imgsrc}}" width="100%" />
+				</div>
+				<div ng-repeat="x in mkgpgmarticle.lines" class="item" ui-sref="mainitem({template:'',path:stateParams.path,mainitemno:x.id,id:x.dispunits[0].id})">
+					<img class="lazy" src="{{config.loadimg}}" data-original="{{x.dispunits[0].imgsrc_prodreal[0]}}" width="100%" />
+				</div>
+
+			</div>
+			<a class="left carousel-control" href="javasript:;" onclick="prevImg(this)" style="background: transparent;" role="button">
+				<span class="glyphicon glyphicon-chevron-left"></span>
+			</a>
+			<a class="right carousel-control" href="javasript:;" onclick="nextImg(this)" style="background: transparent;" role="button">
+				<span class="glyphicon glyphicon-chevron-right"></span>
+			</a>
+		</div>
+	</div>
+
+	<div class="row" style="padding: 0 0 0 15px;">
+		<div class="col-xs-12 col-md-3 " ng-repeat="x in mkgpgmarticle.lines[0].suits" style="padding: 15px 15px 0px 0px;">
+
+			<a id="{{x.id}}" ui-sref="mainitem({template:'',path:stateParams.path,mainitemno:x.id,id:x.dispunits[0].id})">
+				<img src="{{x.dispunits[0].imgsrc_prodreal[0]}}" width="100%" />
+			</a>
+			<div class="recommendedmatch" style="text-align: center;padding: 15px 0px;font-size: 1.2em;font-weight: 400;">
+				{{x.name}}
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+<div ng-include="'foot.html'"></div>

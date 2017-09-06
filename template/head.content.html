@@ -1,0 +1,100 @@
+<style>  
+	
+	#firstmenu {
+		text-align: center;
+		font-size: 4em;
+		font-weight: bold; 
+	} 
+	
+	#secmenu {
+		text-align: center;
+		font-weight: bold;
+		margin: 1.5em 0em 0em 0em;
+	}
+	
+	#secmenu a {
+		border: 0;
+		padding: 0.2em 2em;
+		font-size: 1.5em;
+	}
+	
+	#thrmenu ul li {
+		padding: 0px 15px;
+	}
+	
+	
+</style>
+<style type="text/css">
+	/*tab选项卡样式*/
+	
+	.tab .nav-tabs { 
+		 
+	}
+	
+	.tab .nav-tabs li a {
+	
+		
+	}
+	
+	.tab .nav-tabs li.active{
+		
+		border-bottom: 2px solid #222222;
+	}
+	 
+	
+</style>
+
+
+
+<div ng-include="'top.html'"></div>
+<div ng-include="'css.html'"></div>
+
+<div class="container-fluid hidden-xs hidden-sm" >
+	<div class="row" style="border-bottom: 1px solid #e0e0e0;">
+		<div class="col-md-3" >
+			<img id="brandimg" src="" height="130px" style="margin-left: 20px;" />
+		</div>
+		<div class="col-md-6">
+			<div id="firstmenu" >
+				{{menu | nodeattr:paths[0]:'title'}}
+			</div>
+			<div id="secmenu" class="tab" style="text-align: center;">
+				<ul class="nav nav-tabs" style="display:inline-block;border: 0;margin-bottom: -5px;">
+					<li ng-repeat="x in menu | nodes:paths[0]" class="{{$index | ifvalue:customVar0:'active':''}}" 
+						onclick="selectSecmenu(this)" data-index="{{$index}}">
+						<a data-toggle="tab"></i>{{x.title}} &nbsp;<i class="{{x.classname}}"></i></a>
+					</li>
+				</ul>
+			</div> 
+		</div>
+		<div class="col-md-3" >&nbsp;</div>
+	</div> 
+</div>
+ 
+<div id="thrmenu" class="tab-content hidden-xs hidden-sm" >
+
+	<div ng-repeat="x in menu | nodes:paths[0]" class="tab-pane fade" 
+		ng-class="$index | ifvalue:customVar0:'in active':''" 
+		style="text-align: center;">
+		<ul class="nav nav-pills" style="display: inline-block;">
+
+			<li ng-repeat="y in menu | nodes:x.id" 
+				role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#{{y.id}}" role="button" aria-haspopup="true" aria-expanded="false">
+			      {{y.name}}
+			    </a>
+
+				<ul class="dropdown-menu">
+					<li ng-repeat="z in menu | nodes:y.id">
+						<a ui-sref="{{z.url}}">{{z.name}}</a>
+					</li>
+				</ul>
+			</li>
+
+		</ul>
+	</div>
+
+</div>
+
+ 
+

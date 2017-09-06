@@ -1,0 +1,147 @@
+<div ng-include="'top.html'">
+
+</div>
+<div ng-include="'css.html'"></div>
+
+<div   class="container-fluid">
+	<div id="listbar-placeholder" class="hidden-lg hidden-md">&nbsp;</div>
+	<div id="cap" class="row">
+		<div class="col-xs-1 col-md-4"></div>
+		<div class="col-xs-10 col-md-4">會員信息 </div>
+		<div class="col-xs-1 col-md-4"></div>
+	</div>
+
+	<div class="row">
+
+		<div class="col-xs-1 col-md-4 "></div>
+		<div class="col-xs-10 col-md-4 ">
+
+			<form role="form" id="membermodifyForm" name="membermodifyForm" style="margin-top: 20px;">
+				<div class="form-group">
+					<label class="control-label" for="id">賬號：</label>
+					<input class="form-control " disabled="disabled" ng-value="identify.id" type="text" placeholder=" 請輸入賬號" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="email">電子郵件：</label>
+					<input class="form-control " disabled="disabled" type="text" ng-value="identify.email | privatestring:'*':4" i placeholder=" 郵件綁定后自動修改" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="phone">手機號：</label>
+					<input class="form-control " disabled="disabled" type="text" ng-value="identify.phone | privatestring:'*':4" placeholder=" 手機綁定后自動修改" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="name">姓名：</label>
+					<input class="form-control " type="text" ng-value="identify.name" id="name" name="name" placeholder=" 請輸入姓名" />
+				</div>
+
+				<div class="form-group">
+					<label class=" control-label" for="birthday">生日：</label>
+
+					<div class="input-group date" data-provide="datepicker">
+						<input type="text" id="birthday" ng-value="identify.birthday" class="form-control ">
+						<div class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar"></span>
+						</div>
+
+					</div>
+
+					<script type="text/javascript-lazy">
+						$.fn.datepicker.defaults.autoclose = true;
+						$.fn.datepicker.defaults.language = 'zh-TW';
+					</script>
+
+				</div>
+
+				<div class="form-group">
+
+					<label class="radio-inline">
+						
+						 <div class="checkbox checkbox-primary">
+		                         <input type="radio" name="gendertype" id="man" value="B00F0000J7" ng-checked="identify.gendertype != 'B00F0000JA'">
+				
+							<label for="man">男</label>
+						</div>
+
+				</label>
+
+				<label class="radio-inline">
+					
+					 <div class="checkbox checkbox-danger">
+		                          <input type="radio" name="gendertype" id="weman" value="B00F0000JA" ng-checked="identify.gendertype === 'B00F0000JA'">
+					
+							<label for="weman">女</label>
+						</div>
+
+
+
+					 </label>
+
+		</div>
+
+		<div class="form-group">
+			<label id="labcallback" style="color: #d9534f;"></label>
+		</div>
+		<div class="form-group">
+			<button id="submit" type="submit" class="btn btn-defaul">
+								  <i class="fa fa-edit"></i>&nbsp;
+									  提交</button>
+		</div>
+		</form>
+		<div id="desc">
+			<span>會員信息被修改后，將會自動退出系統，請重新登入。</span><br>
+			<span>舊會員則請勿再以FB帳號登入會員，原帳號購物金恕無法共用</span><br>
+			<span>如有會員資料異動或取消電子報，請隨時至會員中心修改更新。</span><br>
+
+		</div>
+	</div>
+	<div class="col-xs-1 col-md-4"></div>
+</div>
+</div>
+
+<div ng-include="'foot.html'"></div>
+
+<script type="text/javascript-lazy">
+	$.registCallback = function(failMsg) {
+		$('#labcallback').text(failMsg);
+		$('#membermodifyForm').bootstrapValidator('resetForm');
+		$('#submit').click();
+	};
+	$("#membermodifyForm").bootstrapValidator({
+		feedbackIcons: {
+			valid: 'glyphicon glyphicon-ok',
+			invalid: 'glyphicon glyphicon-remove',
+			validating: 'glyphicon glyphicon-refresh'
+		},
+		fields: {
+			name: {
+				validators: {
+					notEmpty: {
+						message: '請輸入姓名'
+					},
+					stringLength: {
+						min: 1,
+						max: 36,
+						message: '姓名字符 1 - 36 个字符之间 '
+					}
+				}
+			}
+		}
+	}).on('success.form.bv', function(e) {
+
+		$('#labcallback').text('');
+		e.preventDefault();
+		scope.$apply(function() {
+			scope.save({
+				name: $('#name').val(),
+				birthday: $('#birthday').val(),
+				gendertype: {
+					pk: $('input:radio[name="gendertype"]:checked').val()
+				}
+			});
+		});
+
+	});
+</script>
